@@ -1,5 +1,4 @@
-from Card import Card
-from CreatureCard import CreatureCard
+from ex0 import Card, CreatureCard
 from typing import Dict, List
 
 
@@ -44,7 +43,9 @@ def main_exec() -> None:
     print('Testing Abstract Base Class Design:')
     card_info(data.db)
     for i in data.db:
-        i.play({})
+        print(f'\nPlaying {i.name} with {i.mana} mana')
+        print(f'Playable: {i.is_playable(i.mana)}')
+        print(f'Play result: {i.play({})}')
     i.attack_target(gw)
     print(f'\nTesting insufficient mana ({i.mana} available):')
     for i in data.db:

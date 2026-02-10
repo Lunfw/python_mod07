@@ -1,4 +1,4 @@
-from Card import Card
+from ex0.Card import Card
 from typing import Dict
 
 
@@ -6,7 +6,7 @@ class GeneralErrors(Exception):
     pass
 
 
-class CreatureErrors(Exception):
+class CardErrors(Exception):
     pass
 
 
@@ -25,8 +25,6 @@ class CreatureCard(Card):
         from random import randint
         self.mana = randint(1, 10)
         temp: Dict = {}
-        print(f'\nPlaying {self.name} with {self.mana} mana')
-        print(f'Playable: {self.is_playable(self.mana)}')
         temp = {
             'card_played': self.name,
             'mana_used': self.cost,
@@ -36,7 +34,6 @@ class CreatureCard(Card):
             self.mana = 0
         else:
             self.mana -= self.cost
-        print(f'Play result: {temp}')
         return (temp)
 
     def attack_target(self, target) -> Dict:
@@ -47,7 +44,7 @@ class CreatureCard(Card):
         print(f'\n{self.name} attacks {target.name}:')
         try:
             if (target.name == self.name):
-                raise CreatureErrors(f'{self.name} attacks itself... wtf?')
+                raise CardErrors(f'{self.name} attacks itself... wtf?')
             if (target.health - self.attack < 0):
                 target.health = 0
             else:
@@ -60,7 +57,7 @@ class CreatureCard(Card):
             if (target.health > 0):
                 temp['combat_resolved'] = False
             temp['combat_resolved'] = True
-        except CreatureErrors as e:
+        except CardErrors as e:
             print(f'Error: {e}')
         print(temp)
         return temp
@@ -79,9 +76,9 @@ class CreatureCard(Card):
         '''
         try:
             if (value < 0):
-                raise CreatureErrors('HP cannot be negative')
+                raise CardErrors('HP cannot be negative')
             self._health = value
-        except CreatureErrors as e:
+        except CardErrors as e:
             print(f'Error: {e}')
             self._health = 10
             return
@@ -100,9 +97,9 @@ class CreatureCard(Card):
         '''
         try:
             if (value < 0):
-                raise CreatureErrors('AP cannot be negative')
+                raise CardErrors('AP cannot be negative')
             self._attack = value
-        except CreatureErrors as e:
+        except CardErrors as e:
             print(f'Error: {e}')
             self._attack = 5
             return
@@ -121,9 +118,9 @@ class CreatureCard(Card):
         '''
         try:
             if (value < 0):
-                raise CreatureErrors('Mana cannot be negative')
+                raise CardErrors('Mana cannot be negative')
             self._mana = value
-        except CreatureErrors as e:
+        except CardErrors as e:
             print(f'Error: {e}')
             self._mana = 10
             return
