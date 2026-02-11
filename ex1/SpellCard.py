@@ -7,7 +7,7 @@ class SpellCard(Card):
             #   Creates a spell card type.
         '''
         super().__init__(name, cost, rarity)
-        self._effect_type = effect_type
+        self.effect_type = effect_type
 
     @property
     def effect_type(self) -> str:
@@ -35,4 +35,4 @@ class SpellCard(Card):
         return (game_state)
 
     def resolve_effect(self, targets: list) -> dict:
-        return (self.effect_type)
+        return (self._effect_type)
