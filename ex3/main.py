@@ -27,7 +27,7 @@ def main_exec():
     factory: FantasyCardFactory = card_lib()
     strategy: AggressiveStrategy = AggressiveStrategy()
     card_lib()
-    print(f'Configuring Fantasy Card Game...')
+    print('Configuring Fantasy Card Game...')
     print(f'Factory: {factory.__class__.__name__}')
     print(f'Strategy: {strategy.__class__.__name__}')
     print(f'Available types: {factory.get_supported_types()}\n')
