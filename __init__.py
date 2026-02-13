@@ -1,7 +1,12 @@
-import ex0
-import ex1
+from os import listdir
 
-__all__ = [
-    'ex0',
-    'ex1'
-]
+
+__all__: list = []
+
+
+for i in listdir():
+    if i.endswith('.py'):
+        __all__.append(i[:-3])
+
+
+print(__all__)
