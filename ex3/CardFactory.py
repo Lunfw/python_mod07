@@ -1,5 +1,5 @@
-from abc import ABC, abstractmethod
 from ex0.Card import Card
+from abc import ABC, abstractmethod
 
 
 class CardFactory(ABC):
@@ -16,7 +16,7 @@ class CardFactory(ABC):
         pass
 
     @abstractmethod
-    def create_theme_deck(self, size: int) -> dict:
+    def create_themed_deck(self, size: int) -> dict:
         pass
 
     @abstractmethod
